@@ -6,17 +6,17 @@ Okno.title('D O C T O R       Э  K  O  H  O  M  K  A...')
 Bild = tk.PhotoImage(file='Phoenixx.png')
 Okno.iconphoto(False, Bild)
 Okno.geometry("800x615+300+120")
-Okno.resizable(False, False)
+#Okno.resizable(False, False)
 
-frame_Futter = tk.Frame(Okno, height=800, width=35)
-frame_Head = tk.Frame(Okno, height=800, width=275, bg='grey')
-frame_Body = tk.Frame(Okno, height=800, width=300,  bg='red')
-frame_Button = tk.Frame(Okno, height=800, width=300,  bg='blue')
+frame_Futter = tk.Frame(Okno, height=25, width=800, bg='yellow')
+frame_Head = tk.Frame(Okno, height=285, width=800, bg='green')
+frame_Body = tk.Frame(Okno, height=300, width=400,  bg='red')
+frame_Button = tk.Frame(Okno, height=300, width=400,  bg='blue')
 
-frame_Futter.pack(side='bottom')
-frame_Head.pack()
-frame_Body.pack(side='left')
-frame_Button.pack(side='right')
+frame_Futter.pack(side='bottom', expand=True)
+frame_Head.pack(side='top' ,expand=True)
+frame_Body.pack(side='left', expand=True)
+frame_Button.pack(side='right', expand=True)
 
 
 Title = tk.Label(frame_Futter, text=' Э  K  O  H  O  M  K  A ',fg='red',bg='#DADADA',font='Alial 35 bold').grid(row=0,column=0)
@@ -32,8 +32,8 @@ Stat_Mesyac_tekst = tk.Label(frame_Button,text='Leto', font='Arial 15 bold').gri
 
 
 
-Sta_summa = tk.Label(frame_Body,text='Summa trat', font='Arial 20 bold').grid(row=0,column=0)
-Stt_summa_tekst = tk.Label(frame_Head,text='Summa trat', font='Arial 20 bold').grid(row=0,column=1)
+#Sta_summa = tk.Label(frame_Body,text='Summa trat', font='Arial 20 bold').grid(row=0,column=0)
+#Stt_summa_tekst = tk.Label(frame_Head,text='Summa trat', font='Arial 20 bold').grid(row=0,column=1)
 
 
 
