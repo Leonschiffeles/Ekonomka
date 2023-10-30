@@ -1,26 +1,6 @@
-import sqlite3
 import tkinter as tk
-
-def get_dannue():
-    all_data = []
-    with sqlite3.connect('bd/baza.db') as bd:
-        bd.row_factory = sqlite3.Row
-        cursor = bd.cursor()
-        zapros = """ SELECT * FROM Оплата JOIN Расходы ON Расходы.id = Оплата.Расходы_id  """
-        cursor.execute(zapros)
-        all_data = zapros
-    return all_data
-
-def get_nachtobolshevsego():
-    dannue = get_dannue()
-    kolichestvo = {}
-    for Оплата in dannue:
-        if Оплата['Расходы_id'] in kolichestvo:
-            kolichestvo[Оплата['Расходы_id']]['straskh'] += 1
-        else:
-            kolichestvo[Оплата['Расходы_id']] = {'straskh' : 1, 'name' : Оплата['name']}
-    return max(kolichestvo.values(), key= lambda x: x['straskh'])['name']
-
+from tkinter import ttk
+#import Logika as log
 
 
 Okno = tk.Tk()
@@ -46,27 +26,40 @@ frame_Button.pack(side='right', expand=True)
 
 Title = tk.Label(frame_Futter, text=' Э  K  O  H  O  M  K  A ',fg='red',bg='#DADADA',font='Alial 35 bold').grid(row=0,column=0)
 
-Stat_summa = tk.Label(frame_Button,text='Summa trat', font='Arial 15').grid(row=0,column=0, stick='w', padx=10, pady=10)
-Stat_summa_tekst = tk.Label(frame_Button,text=get_nachtobolshevsego(), font='Arial 15 bold').grid(row=0,column=1, stick='e', padx=10, pady=10)
-Stat_kategor = tk.Label(frame_Button,text='Na CHTO potratil', font='Arial 15').grid(row=1,column=0, stick='w', padx=10, pady=10)
-Stat_kategor_tekst = tk.Label(frame_Button,text='Razvecheniya', font='Arial 15 bold').grid(row=1,column=1, stick='e', padx=10, pady=10)
-Stat_Den = tk.Label(frame_Button,text='Ssamuy dorogey den', font='Arial 15').grid(row=2,column=0, stick='w', padx=10, pady=10)
-Stat_Den_tekst = tk.Label(frame_Button,text='Subbota', font='Arial 15 bold').grid(row=2,column=1, stick='e', padx=10, pady=10)
+Stat_summa = tk.Label(frame_Button,text='Chashe Vsego', font='Arial 15').grid(row=0,column=0, stick='w', padx=10, pady=10)
+#Stat_summa_tekst = tk.Label(frame_Button,text=log.get_nachtochashe(), font='Arial 15 bold').grid(row=0,column=1, stick='e', padx=10, pady=10)
+Stat_kategor = tk.Label(frame_Button,text='Bolshe Vsego', font='Arial 15').grid(row=1,column=0, stick='w', padx=10, pady=10)
+#Stat_kategor_tekst = tk.Label(frame_Button,text=log.get_kakoyden(), font='Arial 15 bold').grid(row=1,column=1, stick='e', padx=10, pady=10)
+Stat_Den = tk.Label(frame_Button,text='Samuy dorogoy den', font='Arial 15').grid(row=2,column=0, stick='w', padx=10, pady=10)
+#Stat_Den_tekst = tk.Label(frame_Button,text=log.get_kakoyden(), font='Arial 15 bold').grid(row=2,column=1, stick='e', padx=10, pady=10)
 Stat_Mesyac = tk.Label(frame_Button,text='Ssamuy dorogey mesyac', font='Arial 15 ').grid(row=3,column=0, stick='w', padx=10, pady=10)
-Stat_Mesyac_tekst = tk.Label(frame_Button,text='Leto', font='Arial 15 bold').grid(row=3,column=1, stick='e', padx=10, pady=10)
+#Stat_Mesyac_tekst = tk.Label(frame_Button,text=log.get_kakoymesyac(), font='Arial 15 bold').grid(row=3,column=1, stick='e', padx=10, pady=10)
 
 
+list = [
+    (1,'fff','fsfbsb',33),
+    (2,'fff','fsfbsb',33),
+    (3,'fff','fsfbsb',33),
+    (4,'fff','fsfbsb',33),
+    (5,'fff','fsfbsb',33),
+]
 
-Sta_summa = tk.Label(frame_Body,text='Summa trat', font='Arial 20 bold').grid(row=0,column=0)
-Stt_summa_tekst = tk.Label(frame_Head,text='Summa trat', font='Arial 20 bold').grid(row=0,column=1)
+title = ['id', 'Сумма', 'Дата платежа', 'Тип платежа']
+tablica = ttk.Treeview(frame_Head)
+#tablica['displaycolumns'] = ['Сумма','Тип платежа','Дата платежа','id']
+
+tablica['columns'] = [0, 1 ,2, 3]
+for row in list:
+    tablica.insert('',tk.END, values=row)
+
+for titles in title:
+    tablica.heading(titles, text=titles, anchor='center')
+    tablica.column(titles, anchor= 'center')
 
 
-Sta_summ = tk.Label(frame_Body,text='Summa trat', font='Arial 20 bold').grid(row=0,column=1)
-Stt_suma_tekst = tk.Label(frame_Head,text='Summa trat', font='Arial 20 bold').grid(row=0,column=0)
-
-
-
-
+prokrutka = ttk.Scrollbar(frame_Head, command=tablica.yview())
+prokrutka.pack(side=tk.RIGHT, fill=tk.Y)
+tablica.pack(expand=tk.YES, fill=tk.BOTH)
 
 
 Okno.mainloop()
