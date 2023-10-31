@@ -1,52 +1,17 @@
-import sqlite3
+import tkinter as tk
+import json
 
-def get_dannue():
-    all_data = []
-    with sqlite3.connect('bd/baza.db') as bd:
-        bd.row_factory = sqlite3.Row
-        cursor = bd.cursor()
-        zapros = """ SELECT * FROM Оплата JOIN Расходы ON Расходы.id = Оплата.Расходы_id  """
-        cursor.execute(zapros)
-        all_data = zapros
-    return all_data
+Okno = tk.Tk()
+Okno.geometry("800x500")
+Okno.title('D O C T O R  lern und Spaß...')
+with open("woprosu.json", encoding="utf-8") as reader:   #OH I DOLGO JE YA S ETOY STROKOY NAMUCHILSYA...
+    pokazat = json.load(reader)
+wopros = (pokazat['Woprosu'])
+wariant = (pokazat['Wariantu'])
+otvet = (pokazat['Otwetu'])
+print(wopros)
+print(wariant)
+print(wariant)
 
-def get_nachtochashe():
-    dannue = get_dannue()
-    kolichestvo = {}
-    for Оплата in dannue:
-        if Оплата['Расходы_id'] in kolichestvo:
-            kolichestvo[Оплата['Расходы_id']]['straskh'] += 1
-        else:
-            kolichestvo[Оплата['Расходы_id']] = {'straskh' : 1, 'name' : Оплата['name']}
-    return max(kolichestvo.values(), key= lambda x: x['straskh'])['name']
+Okno.mainloop()
 
-def get_kakoyden():
-    dannue = get_dannue()
-    kolichestvo = {}
-    for Оплата in dannue:
-        if Оплата['Расходы_id'] in kolichestvo:
-            kolichestvo[Оплата['Расходы_id']]['straskh'] += 1
-        else:
-            kolichestvo[Оплата['Расходы_id']] = {'straskh' : 1, 'name' : Оплата['name']}
-    return max(kolichestvo.values(), key= lambda x: x['straskh'])['name']
-
-
-def get_kakoyden():
-    dannue = get_dannue()
-    kolichestvo = {}
-    for Оплата in dannue:
-        if Оплата['Расходы_id'] in kolichestvo:
-            kolichestvo[Оплата['Расходы_id']]['straskh'] += 1
-        else:
-            kolichestvo[Оплата['Расходы_id']] = {'straskh' : 1, 'name' : Оплата['name']}
-    return max(kolichestvo.values(), key= lambda x: x['straskh'])['name']
-
-def get_kakoymesyac():
-    dannue = get_dannue()
-    kolichestvo = {}
-    for Оплата in dannue:
-        if Оплата['Расходы_id'] in kolichestvo:
-            kolichestvo[Оплата['Расходы_id']]['straskh'] += 1
-        else:
-            kolichestvo[Оплата['Расходы_id']] = {'straskh' : 1, 'name' : Оплата['name']}
-    return max(kolichestvo.values(), key= lambda x: x['straskh'])['name']
