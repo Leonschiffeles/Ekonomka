@@ -24,7 +24,7 @@ frame_Footer.pack(side='bottom',fill='x')
 
 btn_w = tk.Button(frame_Button,text='Viktorina',width=12, bg='#003C80',fg='#FFFFFF',font=('Arial', 14,'bold')).grid(row=0,column=0)
 btn_k = tk.Button(frame_Button, text='Kartochki',width=12, bg='#003C80',fg='#FFFFFF',font=('Arial', 14,'bold')).grid(row=0,column=1)
-btn_pass = tk.Button(frame_Button,text='Pogoda',width=12, bg='#003C80',fg='#FFFFFF',font=('Arial', 14,'bold')).grid(row=0,column=2)
+btn_pass = tk.Button(frame_Button,text='Ekonomka',width=12, bg='#003C80',fg='#FFFFFF',font=('Arial', 14,'bold')).grid(row=0,column=2)
 btn_q= tk.Button(frame_Button, text='Quele',width=14, bg='#003C80',fg='#FFFFFF',font=('Arial', 14,'bold')).grid(row=0,column=3)
 
 
