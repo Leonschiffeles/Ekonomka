@@ -3,7 +3,8 @@ from tkinter import ttk
 #import Logika as log
 
 
-Okno = tk.Tk()Okno.config(bg='#DADADA')
+Okno = tk.Tk()
+Okno.config(bg='#DADADA')
 Okno.title('D O C T O R       Э  K  O  H  O  M  K  A...')
 Bild = tk.PhotoImage(file='Phoenixx.png')
 Okno.iconphoto(False, Bild)
